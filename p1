@@ -1,0 +1,2 @@
+#!/bin/ksh
+ruby lexer.rb $1
