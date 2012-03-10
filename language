@@ -1,0 +1,28 @@
+PGM -> TS id D DL                         || int void
+DL -> TS id D DL | empty                 || int void | $
+D -> VV | ( PS ) { LD SL }               || ; [ | (
+VV -> ; | [ num ] ;                         || ; | [
+TS -> int | void                            || int | void
+PS -> int id P PL | void PSA              || int | void
+PSA -> id P PL | empty                    || id | )
+PL -> , TS id P PL | empty               || , | )
+P -> [ ] | empty                           || [ | , )
+LD -> TS id VV LD | empty                 || int void | { if while return ; id ( num }
+SL -> S SL | empty                        || { if while return ; id ( num || }
+S -> EX | { LD SL } | if ( E ) S SS | while ( E ) S | return EX || ; id ( num | { | if | while | return
+EX -> E ; | ;                               || id ( num | ;
+SS -> else S | empty                       || else | { if while return ; id ( num else }
+E -> id EA | ( E ) T AEA SEA | num T AEA SEA || id | ( | num
+EA -> V EE | ( AG ) T AEA SEA
+EE -> == E | T AEA SEA
+V -> [ E ] | empty
+SEA -> R T AEA | empty
+R -> le | lt | gt | ge | ee | ne
+AEA -> A F T AEA | empty
+A -> plus | minus
+T -> M F T | empty
+M -> times | divide
+F -> ( E ) | id FA | num
+FA -> V | ( AG )
+AG -> E AL | empty
+AL -> , E AL | empty

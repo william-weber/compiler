@@ -1,16 +1,36 @@
-/**************/
+/**/          /*/* */   */
+/*/*/****This**********/*/    */
 /*************************
 i = 333;        ******************/       */
-
-iiii = 3@33;
-4.12144E3 4E10 -513.4e53 -4.3E-2 -2 +3 +4.5 4.5
-int 3 //totally awesome comment
-int g 4 cdreturn (int u, int v)      {
-if(v == >= 0) return/*a comment*/u;
-else ret_urn gcd(vxxxxxxvvvvv, u-u/v*v);
+/***/           /* x = 4; */
+int gcd (int u, int v)
+{
+int x;
+if(v == >= 0) return/*a comment*/ u;
+else ret_urn gcd(vxvv, u-u/v*v);
        /* u-u/v*v == u mod v*/
-!gfa return;
+int x;
+  {
+     int x;
+  }
+!
 }
-
 return void while       void main()
-
+x123 x_123 xxx_yyy
+/* should parse */
+int q;
+void monkey(void)
+{
+       int q;  void a[4]; int b; void c;
+       b=b/2;
+       while (b==3)
+       { int x; x=q+2; }
+       if (c==b)
+       { a[car(1)]=3; a[2+1]=3; c=car(4); }
+}
+int d;
+int car(int j)
+{
+       int q[3];
+       q=j+4;
+}

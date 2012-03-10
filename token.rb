@@ -1,9 +1,10 @@
 class Token
   # types: line_comment, start_comment, end_comment, keyword, symbol,
-  # identifier, number 
+  # identifier, integer, float
   attr_accessor :string, :type, :next, :had_match, :error, :depth
 
   def initialize(string = "")
+    @symbol = ["+", "-", "*", "/", "<", "<=", ">", ">=", "==", "!=", "=", ";", ",", "(", ")", "[", "]", "{", "}"]
     @string = string
     @had_match = nil
     @error = false
@@ -40,7 +41,6 @@ class Token
   end
 
   def match
-    symbol = ["+", "-", "*", "/", "<", "<=", ">", ">=", "==", "!=", "=", ";", ",", "(", ")", "[", "]", "{", "}"]
     case string
     when "//"
       self.type = :line_comment
@@ -54,13 +54,13 @@ class Token
     when /\Aelse\Z/i, /\Aif\Z/i, /\Aint\Z/i, /\Afloat\Z/i, /\Areturn\Z/i, /\Avoid\Z/i, /\Awhile\Z/i
       self.type = :keyword
       @had_match = :keyword
-    when *symbol
+    when *@symbol
       self.type = :symbol
       @had_match = :symbol
     when /\A[A-Za-z][A-Za-z0-9]{0,7}\Z/
       self.type = :identifier
       @had_match = :identifier
-    when /\A(\+|-)?[0-9]\Z/
+    when /\A[0-9]+\Z/
       self.type = :integer
       @had_match = :integer
     when /\A(\+|-)?(\d)\.(\d)+(E(\+|-)?(\d)+)?\Z/i
@@ -69,6 +69,15 @@ class Token
     else
       self.type = nil
     end
+  end
+  
+  def matches(symbol)
+    if [:integer, :float, :identifier].include?(symbol)
+      return true if symbol == type
+    else
+      return true if symbol.to_s == string
+    end
+    false
   end
 
   def line_comment?
