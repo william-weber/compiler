@@ -14,5 +14,26 @@ int gcd (int u, int v)
 int main(void test, int test[]) {
   int q;
   int q[12];
-  test[test * ( test + 1 ) / test ( 5 * 6 - 56 >= ) ];
+}
+void main(void)
+{
+  int x;
+  int y;
+  int z;
+  int m;
+   while(x+3 > 5)
+   {
+     x = y + m / z;
+     m = x - y + z * m / z;
+   }
+}
+int sub(int x)
+{
+   return(x+x);
+}
+void main(void)
+{
+  int x;
+  int y;
+  y = sub(x);
 }

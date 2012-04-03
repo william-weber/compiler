@@ -60,7 +60,7 @@ class Lexer
                 token = token.next
                 token.match
               end
-            elsif token.had_match == :float and !["-", "+"].include?(c) && (symbol << " ").include?(c)
+            elsif token.had_match == :floatnumber and !["-", "+"].include?(c) && (symbol << " ").include?(c)
               if token.error
                 token.next = Token.new(c.strip)
                 token = token.next

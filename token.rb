@@ -64,15 +64,15 @@ class Token
       self.type = :integer
       @had_match = :integer
     when /\A(\+|-)?(\d)\.(\d)+(E(\+|-)?(\d)+)?\Z/i
-      self.type = :float
-      @had_match = :float
+      self.type = :floatnumber
+      @had_match = :floatnumber
     else
       self.type = nil
     end
   end
   
   def matches(symbol)
-    if [:integer, :float, :identifier].include?(symbol)
+    if [:integer, :floatnumber, :identifier].include?(symbol)
       return true if symbol == type
     else
       return true if symbol.to_s == string
