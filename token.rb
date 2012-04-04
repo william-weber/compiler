@@ -2,6 +2,7 @@ class Token
   # types: line_comment, start_comment, end_comment, keyword, symbol,
   # identifier, integer, float
   attr_accessor :string, :type, :next, :had_match, :error, :depth
+  attr_accessor :attributes
 
   def initialize(string = "")
     @symbol = ["+", "-", "*", "/", "<", "<=", ">", ">=", "==", "!=", "=", ";", ",", "(", ")", "[", "]", "{", "}"]
@@ -9,6 +10,7 @@ class Token
     @had_match = nil
     @error = false
     @depth = 0
+    @attributes = {}
   end
 
   def <<(char)
