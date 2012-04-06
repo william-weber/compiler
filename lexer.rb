@@ -1,11 +1,9 @@
 class Lexer
   attr_reader :tokens
-  attr_reader :symbol_table
 
   def initialize(file)
     @symbols = ["+", "-", "*", "/", "<", "<=", ">", ">=", "==", "!=", "=", ";", ",", "(", ")", "[", "]", "{", "}"]
     @tokens = []
-    @symbol_table = SymbolTable.new(nil)
     begin
       @file = File.new file
     rescue
@@ -16,10 +14,11 @@ class Lexer
   def parse
     comment_nesting_depth = 0
     block_nesting_depth = 0
+    line_number = 0
     token = Token.new
     first_token = token
-    current_symbol_table = @symbol_table
     @file.each_line do |l|
+      line_number += 1
       l.strip!
       l << " "
       token.reset!
@@ -57,8 +56,8 @@ class Lexer
               else
                 token.chop!
                 token.depth = block_nesting_depth
+                token.line_number = line_number
                 @tokens << token
-                current_symbol_table << token if token.type == :identifier
                 token = token.next
                 token.match
               end
@@ -70,6 +69,7 @@ class Lexer
               else
                 token.chop!
                 token.depth = block_nesting_depth
+                token.line_number = line_number
                 @tokens << token
                 token = token.next
                 token.match
@@ -78,12 +78,11 @@ class Lexer
               token.chop!
               if ["(", "{"].include?(token.string)
                 block_nesting_depth += 1
-                current_symbol_table = current_symbol_table.new_child
               elsif [")", "}"].include?(token.string)
                 block_nesting_depth -= 1
-                current_symbol_table = current_symbol_table.parent
               end
               token.depth = block_nesting_depth
+              token.line_number = line_number
               @tokens << token
               token = token.next
               token.match
@@ -98,26 +97,5 @@ class Lexer
 
   def is_separator?( character )
     @symbols.include?( character ) or character == " "
-  end
-end
-
-class SymbolTable
-  attr_accessor :symbols, :children
-  attr_reader :parent
-
-  def initialize(parent)
-    @parent = parent
-    @symbols = []
-    @children = []
-  end
-
-  def <<(token)
-    @symbols << token
-  end
-
-  def new_child
-    child = SymbolTable.new(self)
-    @children << child
-    return child
   end
 end

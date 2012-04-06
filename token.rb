@@ -3,6 +3,7 @@ class Token
   # identifier, integer, float
   attr_accessor :string, :type, :next, :had_match, :error, :depth
   attr_accessor :attributes
+  attr_accessor :line_number
 
   def initialize(string = "")
     @symbol = ["+", "-", "*", "/", "<", "<=", ">", ">=", "==", "!=", "=", ";", ",", "(", ")", "[", "]", "{", "}"]
@@ -10,6 +11,7 @@ class Token
     @had_match = nil
     @error = false
     @depth = 0
+    @line_number = 0
     @attributes = {}
   end
 

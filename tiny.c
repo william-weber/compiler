@@ -1,39 +1,40 @@
 int abc;
-int abc[1];
 int gcd (int u, int v)
  { if (v == 0) return u;
-    else return gcd(v, u-u/v8v);
+    else return gcd(v, u-u/v*v);
     /* dfkljdf */
  }
  
  void main(void)
  {    int x; int y;
-    x = input(); y = input();
-    output(gcd(x, y));
+    x = main(); y = gcd();
+    gcd(gcd(x, y));
  }
-int main(void test, int test[]) {
-  int q;
+int main2(void test, int test[]) {
   int q[12];
 }
-void main(void)
+void main3(void)
 {
   int x;
   int y;
   int z;
-  int m;
+  float m;
    while(x+3 > 5)
    {
+     main3(x);
      x = y + m / z;
      m = x - y + z * m / z;
    }
+   return m;
 }
 int sub(int x)
 {
    return(x+x);
 }
-void main(void)
+int main4(int z)
 {
   int x;
   int y;
   y = sub(x);
+  return x;
 }
