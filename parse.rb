@@ -1,6 +1,6 @@
-require "./token.rb"
-require "./lexer.rb"
-require "./parser.rb"
+load "./token.rb"
+load "./lexer.rb"
+load "./parser.rb"
 
 # Create a new Language and define rules for it.
 parser = Language.new do |p|
@@ -448,7 +448,7 @@ end
 
 
 # Create a new Lexer with the input file
-lexer = Lexer.new("tiny.c")
+lexer = Lexer.new(ARGV[0])
 lexer.parse
 parser.tokens = lexer.tokens
 parser.tokens.each do |token|

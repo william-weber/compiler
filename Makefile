@@ -1,2 +1,2 @@
 all:
-	@echo "No compilation needed! Run p1.sh."
+	@echo "No compilation needed! Run p3.sh."
